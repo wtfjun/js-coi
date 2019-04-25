@@ -150,7 +150,7 @@ validCoi
     .minLength(3, 'id不能少于3位')
     .maxLength(5, 'id不能多于5位')
 
-    .data('1234@qq.)
+    .data('1234@qq.')
     .isRequired('邮箱不能为空')
     .isEmail('邮箱格式不正确')
 
