@@ -42,7 +42,7 @@ idCoi
     .minLength(3, 'id不能少于3位')
     .maxLength(5, 'id不能多于5位')
     .isEmail('id邮箱格式不正确')
-    .isUrl('id格式不正确')
+    .isURL('id格式不正确')
     .requireFormat(['number', 'letter', 'chinese'], 'id格式不正确')
     .requireRegexp(/012345/, 'id格式不正确')
 
