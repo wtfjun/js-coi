@@ -24,7 +24,7 @@ validCoi
 
     .data('http:dwd')
     .isRequired('url不能为空')
-    .isUrl('url格式不正确')
+    .isURL('url格式不正确')
 
 if (!validCoi.pass) {
     this.$message.error(validCoi.errorMessage)
