@@ -8,7 +8,8 @@ yarn add js-coi
 
 使用：
 ```
-import Coi from 'js-coi'
+const Coi = require('js-coi')
+// import Coi from 'js-coi'
 
 const validCoi = new Coi()
 validCoi
@@ -33,9 +34,6 @@ if (!validCoi.pass) {
 
 当然你只校验一个字段的话也可以这么使用：
 ```
-const Coi = require('js-coi')
-// import Coi from 'js-coi'
-
 const idCoi = new Coi('1234')
 idCoi
     .isRequired('id不能为空')
