@@ -56,3 +56,8 @@ idCoi
     .requireFormat(['number', 'letter', 'chinese'], '格式不正确')
     .requireRegexp(/012345/, '格式不正确')
 ```
+
+<i>将会持续补充校验规则，欢迎关注，提issue。</i>
+<br />
+<br />
+<i>如有疑问，欢迎联系。wx：c13266836563（陈小俊）<i/>
