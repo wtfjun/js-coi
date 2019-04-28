@@ -14,38 +14,45 @@ const Coi = require('js-coi')
 const validCoi = new Coi()
 validCoi
     .data('1234')
-    .isRequired('id不能为空')
-    .minLength(3, 'id不能少于3位')
-    .maxLength(5, 'id不能多于5位')
+    // 设置label 则label会添加到错误信息前
+    .label('id')
+    .isRequired('不能为空')
+    .minLength(3, '不能少于3位')
+    .maxLength(5, '不能多于5位')
+
+    // .data('1234')
+    // 不设置label 则错误信息完全定制 需要输入完整错误信息
+    // .isRequired('id不能为空')
 
     .data('1234@qq.')
-    .isRequired('邮箱不能为空')
-    .isEmail('邮箱格式不正确')
+    .label('邮箱')
+    .isRequired('不能为空')
+    .isEmail('格式不正确')
 
     .data('http:dwd')
-    .isRequired('url不能为空')
-    .isURL('url格式不正确')
+    .label('url')
+    .isRequired('不能为空')
+    .isURL('格式不正确')
 
 if (!validCoi.pass) {
-    this.$message.error(validCoi.errorMessage)
+    // 打印错误信息
+    console.log(validCoi.errorMessage)
+    
+    // 调用弹窗组件提示错误信息
+    // this.$message.error(validCoi.errorMessage)
     return
 }
 ```
 
 当然你只校验一个字段的话也可以这么使用：
 ```
-const idCoi = new Coi('1234')
+const idCoi = new Coi('1234', 'id')
 idCoi
-    .isRequired('id不能为空')
-    .minLength(3, 'id不能少于3位')
-    .maxLength(5, 'id不能多于5位')
-    .isEmail('id邮箱格式不正确')
-    .isURL('id格式不正确')
-    .requireFormat(['number', 'letter', 'chinese'], 'id格式不正确')
-    .requireRegexp(/012345/, 'id格式不正确')
-
-if (!idCoi.pass) {
-    this.$message.error(idCoi.errorMessage)
-    return
-}
+    .isRequired('不能为空')
+    .minLength(3, '不能少于3位')
+    .maxLength(5, '不能多于5位')
+    .isEmail('邮箱格式不正确')
+    .isURL('格式不正确')
+    .requireFormat(['number', 'letter', 'chinese'], '格式不正确')
+    .requireRegexp(/012345/, '格式不正确')
 ```

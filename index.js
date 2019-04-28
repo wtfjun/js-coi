@@ -1,6 +1,7 @@
 class Coi {
-    constructor(prop) {
-        this.input = prop
+    constructor(input, label) {
+        this._input = input
+        this._label = label
         this.errorMessage = '通过校验' // 错误信息
         this.pass = true // 校验是否通过
     }
@@ -9,7 +10,15 @@ class Coi {
     data(input) {
         if (!this.pass) return this
 
-        this.input = input
+        this._input = input
+        return this
+    }
+
+    // 标题输入
+    label(label) {
+        if (!this.pass) return this
+
+        this._label = label
         return this
     }
 
@@ -18,11 +27,11 @@ class Coi {
         if (!this.pass) return this
 
         if (
-            /^\s*$/g.test(this.input) ||
-            this.input === null ||
-            this.input === undefined
+            /^\s*$/g.test(this._input) ||
+            this._input === null ||
+            this._input === undefined
         ) {
-            this.errorMessage = message
+            this.errorMessage = this._label ? this._label + message : message
             this.pass = false
         }
         return this
@@ -32,8 +41,8 @@ class Coi {
     minLength(length, message) {
         if (!this.pass) return this
 
-        if (this.input.length < length) {
-            this.errorMessage = message
+        if (this._input.length < length) {
+            this.errorMessage = this._label ? this._label + message : message
             this.pass = false
         }
         return this
@@ -43,8 +52,8 @@ class Coi {
     maxLength(length, message) {
         if (!this.pass) return this
 
-        if (this.input.length > length) {
-            this.errorMessage = message
+        if (this._input.length > length) {
+            this.errorMessage = this._label ? this._label + message : message
             this.pass = false
         }
         return this
@@ -69,20 +78,20 @@ class Coi {
             }${formatMap.chinese ? '\u4e00-\u9fa5' : ''}]*$`
         )
 
-        if (!formatReg.test(this.input)) {
-            this.errorMessage = message
+        if (!formatReg.test(this._input)) {
+            this.errorMessage = this._label ? this._label + message : message
             this.pass = false
         }
         return this
     }
 
-    // 邮箱校验
+    // 邮箱校验（不区分大小写）
     isEmail(message) {
         if (!this.pass) return this
 
         const emailReg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
-        if (!emailReg.test(this.input)) {
-            this.errorMessage = message
+        if (!emailReg.test(this._input.toLowerCase())) {
+            this.errorMessage = this._label ? this._label + message : message
             this.pass = false
         }
         return this
@@ -96,8 +105,8 @@ class Coi {
             '^(?!mailto:)(?:(?:http|https|ftp)://|//)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$',
             'i'
         )
-        if (!urlReg.test(this.input)) {
-            this.errorMessage = message
+        if (!urlReg.test(this._input)) {
+            this.errorMessage = this._label ? this._label + message : message
             this.pass = false
         }
         return this
@@ -107,8 +116,8 @@ class Coi {
     requireRegexp(reg, message) {
         if (!this.pass) return this
 
-        if (!reg.test(this.input)) {
-            this.errorMessage = message
+        if (!reg.test(this._input)) {
+            this.errorMessage = this._label ? this._label + message : message
             this.pass = false
         }
         return this
