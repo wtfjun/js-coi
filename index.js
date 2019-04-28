@@ -1,4 +1,4 @@
-export default class Coi {
+class Coi {
     constructor(prop) {
         this.input = prop
         this.errorMessage = '通过校验' // 错误信息
@@ -114,3 +114,5 @@ export default class Coi {
         return this
     }
 }
+
+module.exports = Coi

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/wtfjun/coi/issues"
   },
-  "homepage": "https://github.com/wtfjun/coi#readme"
+  "homepage": "https://github.com/wtfjun/coi#readme",
+  "dependencies": {
+    "js-coi": "^1.0.0"
+  }
 }
