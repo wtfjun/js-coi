@@ -14,6 +14,14 @@ class Coi {
         return this
     }
 
+    // 标识符输入
+    key(key) {
+        if (!this.pass) return this
+
+        this._key = key
+        return this
+    }
+
     // 标题输入
     label(label) {
         if (!this.pass) return this
